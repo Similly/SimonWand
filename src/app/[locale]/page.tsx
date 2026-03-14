@@ -50,7 +50,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
         <Skills content={content} />
         <Experience content={content} />
         <Projects content={content} />
-        <Contact content={content} />
+        <Contact content={content} locale={locale} />
       </main>
       <Footer content={content} />
     </>

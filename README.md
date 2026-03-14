@@ -13,6 +13,7 @@ Production-ready portfolio website built with Next.js, TypeScript, and Tailwind 
 - Locale-based routing (`/de`, `/en`) with browser-language redirect middleware
 - Full bilingual UI content (German + English)
 - Light/Dark mode toggle with system default + persisted preference
+- Functional contact form backend via Resend (`/api/contact`)
 - Responsive section-based portfolio layout
 - SEO basics: locale metadata, alternates, sitemap, robots, JSON-LD
 
@@ -35,6 +36,12 @@ npm run dev
 ```
 
 Open `http://localhost:3000`.
+
+### Contact form setup (Resend)
+
+1. Copy `.env.example` to `.env.local`.
+2. Set `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, and `CONTACT_TO_EMAIL`.
+3. Use a verified domain email in production for `CONTACT_FROM_EMAIL`.
 
 ## Production
 

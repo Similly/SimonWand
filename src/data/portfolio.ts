@@ -109,6 +109,11 @@ export type PortfolioContent = {
     subjectPlaceholder: string;
     messagePlaceholder: string;
     submitLabel: string;
+    submitLoadingLabel: string;
+    successMessage: string;
+    errorMessage: string;
+    validationMessage: string;
+    rateLimitMessage: string;
   };
   contactDetails: ContactDetail[];
   footer: {
@@ -154,7 +159,7 @@ const shared = {
         "/images/FootballVision_lo.png",
       technologies: ["Python", "PyTorch", "Machine Learning", "Computer Vision"],
       codeUrl: "https://github.com/Similly/FootballVision",
-      demoUrl: "https://example.com",
+      demoUrl: "",
     },
     {
       name: "InvoiceFlow",
@@ -299,6 +304,11 @@ const contentByLocale: Record<Locale, PortfolioContent> = {
       subjectPlaceholder: "Betreff",
       messagePlaceholder: "Deine Nachricht",
       submitLabel: "Nachricht senden",
+      submitLoadingLabel: "Wird gesendet...",
+      successMessage: "Danke! Deine Nachricht wurde erfolgreich versendet.",
+      errorMessage: "Beim Senden ist ein Fehler aufgetreten. Bitte versuche es erneut.",
+      validationMessage: "Bitte prüfe deine Eingaben und versuche es erneut.",
+      rateLimitMessage: "Zu viele Anfragen in kurzer Zeit. Bitte versuche es in ein paar Minuten erneut.",
     },
     contactDetails: [
       { label: "E-Mail", ...shared.contactDetails[0] },
@@ -445,6 +455,11 @@ const contentByLocale: Record<Locale, PortfolioContent> = {
       subjectPlaceholder: "Subject",
       messagePlaceholder: "Your Message",
       submitLabel: "Send Message",
+      submitLoadingLabel: "Sending...",
+      successMessage: "Thanks! Your message was sent successfully.",
+      errorMessage: "Something went wrong while sending. Please try again.",
+      validationMessage: "Please check your input and try again.",
+      rateLimitMessage: "Too many requests in a short time. Please try again in a few minutes.",
     },
     contactDetails: [
       { label: "Email", ...shared.contactDetails[0] },
