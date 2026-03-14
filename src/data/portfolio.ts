@@ -166,14 +166,14 @@ const shared = {
       image: "/images/InvoiceFlow_logo.png",
       technologies: ["Python", "FastAPI", "PostgreSQL", "Jinja2"],
       codeUrl: "https://github.com/Similly/InvoiceFlow",
-      demoUrl: "https://www.invoiceflow.simonwand.de",
+      demoUrl: "https://invoiceflow.simonwand.de",
     },
     {
       name: "ClientOps",
       image: "/images/ClientOps_logo.png",
       technologies: ["Next.js", "Tailwind CSS", "NextAuth", "Docker"],
       codeUrl: "https://github.com/Similly/ClientOps",
-      demoUrl: "https://www.clientops.simonwand.de",
+      demoUrl: "https://clientops.simonwand.de",
     },
   ],
   contactDetails: [
