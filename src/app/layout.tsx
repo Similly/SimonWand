@@ -1,32 +1,34 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { portfolioData } from "@/data/portfolio";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(portfolioData.seo.siteUrl),
-  title: portfolioData.seo.title,
-  description: portfolioData.seo.description,
-  applicationName: portfolioData.person.name,
-  openGraph: {
-    title: portfolioData.seo.title,
-    description: portfolioData.seo.description,
-    url: portfolioData.seo.siteUrl,
-    siteName: portfolioData.person.name,
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: portfolioData.seo.title,
-    description: portfolioData.seo.description,
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: portfolioData.seo.siteUrl,
-  },
+  title: "Simon Wand",
+  description: "Developer portfolio",
 };
+
+const themeInitScript = `
+(function() {
+  try {
+    var storedTheme = localStorage.getItem('theme-preference');
+    var resolvedTheme = storedTheme;
+    if (!resolvedTheme) {
+      resolvedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(resolvedTheme);
+    document.documentElement.dataset.theme = resolvedTheme;
+
+    var localeFromPath = window.location.pathname.split('/')[1];
+    if (localeFromPath === 'de' || localeFromPath === 'en') {
+      document.documentElement.lang = localeFromPath;
+    }
+  } catch (e) {
+    document.documentElement.classList.add('dark');
+    document.documentElement.dataset.theme = 'dark';
+  }
+})();
+`;
 
 export default function RootLayout({
   children,
@@ -34,8 +36,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="bg-[#0a0a0a] font-sans text-zinc-100 antialiased">{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="bg-[var(--bg)] font-sans text-[var(--text-primary)] antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

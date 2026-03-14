@@ -1,30 +1,79 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: dark;
-  --font-system: "Inter", "Avenir Next", "Segoe UI", "SF Pro Text", "Helvetica Neue", Arial,
-    sans-serif;
+  --font-system: "Inter", "Avenir Next", "Segoe UI", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
 }
 
 @theme inline {
   --font-sans: var(--font-system);
 }
 
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+html.light {
+  --bg: #f5f6f8;
+  --header-bg: #ffffff;
+  --hero-bg-start: #ffffff;
+  --hero-bg-end: #f2f4f8;
+  --hero-glow-1: rgba(17, 24, 39, 0.08);
+  --hero-glow-2: rgba(59, 130, 246, 0.08);
+  --surface: #ffffff;
+  --surface-2: #f5f7fb;
+  --border: #d7dce5;
+  --border-strong: #aeb7c6;
+  --text-primary: #101828;
+  --text-secondary: #344054;
+  --text-muted: #667085;
+  --text-gradient-end: #475467;
+  --button-primary-bg: #111827;
+  --button-primary-bg-hover: #000000;
+  --button-primary-text: #ffffff;
+  --focus-ring: #2563eb;
+  --avatar-ring-start: #dbe2f0;
+  --avatar-ring-end: #b3bfd3;
+}
+
+html.dark,
+:root {
+  --bg: #0a0a0a;
+  --header-bg: #0a0a0a;
+  --hero-bg-start: #0a0a0a;
+  --hero-bg-end: #090d14;
+  --hero-glow-1: rgba(250, 250, 250, 0.08);
+  --hero-glow-2: rgba(250, 250, 250, 0.09);
+  --surface: rgba(16, 18, 22, 0.72);
+  --surface-2: rgba(24, 27, 35, 0.75);
+  --border: rgba(66, 70, 80, 0.7);
+  --border-strong: rgba(110, 115, 130, 0.95);
+  --text-primary: #f8fafc;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+  --text-gradient-end: #cdd6e3;
+  --button-primary-bg: #f8fafc;
+  --button-primary-bg-hover: #ffffff;
+  --button-primary-text: #111827;
+  --focus-ring: #93c5fd;
+  --avatar-ring-start: #3f4758;
+  --avatar-ring-end: #171b24;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
 * {
-  border-color: rgb(39 39 42 / 1);
+  border-color: var(--border);
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: #0a0a0a;
-  color: rgb(244 244 245);
-}
-
 ::selection {
-  background: rgb(228 228 231 / 0.2);
+  background: color-mix(in oklab, var(--text-primary) 20%, transparent);
 }

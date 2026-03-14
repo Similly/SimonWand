@@ -2,40 +2,61 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { portfolioData } from "@/data/portfolio";
+import { PortfolioContent } from "@/data/portfolio";
+import { Locale } from "@/lib/i18n";
+import { LanguageSwitcher } from "@/components/site/language-switcher";
+import { ThemeToggle } from "@/components/site/theme-toggle";
 
-export function Navbar() {
+type NavbarProps = {
+  locale: Locale;
+  content: PortfolioContent;
+};
+
+export function Navbar({ locale, content }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-800/90 bg-[#0a0a0a]/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--header-bg)]/95 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
-          href="#home"
-          className="text-sm font-semibold tracking-wide text-zinc-100 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+          href={`/${locale}#home`}
+          className="text-sm font-semibold tracking-wide text-[var(--text-primary)] transition-colors hover:text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
         >
-          {portfolioData.person.name}
+          {content.person.name}
         </Link>
 
-        <nav aria-label="Primary navigation" className="hidden items-center gap-2 md:flex">
-          {portfolioData.nav.map((item) => (
+        <nav aria-label={content.accessibility.navPrimary} className="hidden items-center gap-2 md:flex">
+          {content.nav.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
-              className="rounded-md px-3 py-2 text-sm text-zinc-400 transition-colors hover:bg-zinc-800/70 hover:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+              href={`/${locale}${item.href}`}
+              className="rounded-md px-3 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-2)] hover:text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
+        <div className="hidden items-center gap-2 md:flex">
+          <LanguageSwitcher
+            locale={locale}
+            label={content.languageSwitcher.label}
+            germanLabel={content.languageSwitcher.german}
+            englishLabel={content.languageSwitcher.english}
+          />
+          <ThemeToggle
+            toLightLabel={content.themeSwitcher.toLight}
+            toDarkLabel={content.themeSwitcher.toDark}
+          />
+        </div>
+
         <button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="inline-flex items-center justify-center rounded-md border border-zinc-700 p-2 text-zinc-200 transition-colors hover:border-zinc-500 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] md:hidden"
+          className="inline-flex items-center justify-center rounded-md border border-[var(--border)] p-2 text-[var(--text-primary)] transition-colors hover:border-[var(--border-strong)] hover:bg-[var(--surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] md:hidden"
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-label={isOpen ? content.accessibility.closeMenu : content.accessibility.openMenu}
         >
           <span aria-hidden>{isOpen ? "✕" : "☰"}</span>
         </button>
@@ -43,20 +64,33 @@ export function Navbar() {
 
       <nav
         id="mobile-navigation"
-        aria-label="Mobile navigation"
-        className={`${isOpen ? "block" : "hidden"} border-t border-zinc-800 md:hidden`}
+        aria-label={content.accessibility.navMobile}
+        className={`${isOpen ? "block" : "hidden"} border-t border-[var(--border)] md:hidden`}
       >
-        <div className="mx-auto flex max-w-6xl flex-col px-4 py-3 sm:px-6">
-          {portfolioData.nav.map((item) => (
+        <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 sm:px-6">
+          {content.nav.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              href={`/${locale}${item.href}`}
               onClick={() => setIsOpen(false)}
-              className="rounded-md px-3 py-2 text-sm text-zinc-300 transition-colors hover:bg-zinc-800/70 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+              className="rounded-md px-3 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-2)] hover:text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
             >
               {item.label}
             </Link>
           ))}
+
+          <div className="mt-2 flex items-center justify-between border-t border-[var(--border)] pt-3">
+            <LanguageSwitcher
+              locale={locale}
+              label={content.languageSwitcher.label}
+              germanLabel={content.languageSwitcher.german}
+              englishLabel={content.languageSwitcher.english}
+            />
+            <ThemeToggle
+              toLightLabel={content.themeSwitcher.toLight}
+              toDarkLabel={content.themeSwitcher.toDark}
+            />
+          </div>
         </div>
       </nav>
     </header>

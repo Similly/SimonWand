@@ -14,15 +14,13 @@ export function SectionHeading({
   return (
     <header className={centered ? "text-center" : ""}>
       {eyebrow ? (
-        <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
-          {eyebrow}
-        </p>
+        <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">{eyebrow}</p>
       ) : null}
-      <h2 className="text-balance text-3xl font-semibold tracking-tight text-zinc-100 sm:text-4xl">
+      <h2 className="text-balance text-3xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-4xl">
         {title}
       </h2>
       {description ? (
-        <p className="mx-auto mt-4 max-w-2xl text-pretty text-sm leading-7 text-zinc-400 sm:text-base">
+        <p className="mx-auto mt-4 max-w-2xl text-pretty text-sm leading-7 text-[var(--text-secondary)] sm:text-base">
           {description}
         </p>
       ) : null}

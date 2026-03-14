@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
-import { portfolioData } from "@/data/portfolio";
+import { getPortfolioContent } from "@/data/portfolio";
+
+const siteUrl = getPortfolioContent("en").seo.siteUrl;
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${portfolioData.seo.siteUrl}/sitemap.xml`,
+    sitemap: `${siteUrl}/sitemap.xml`,
   };
 }
