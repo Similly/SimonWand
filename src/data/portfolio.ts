@@ -150,7 +150,7 @@ const shared = {
   socialLinks: [
     { label: "GitHub", href: "https://github.com/Similly", short: "GH" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/simon-wand-747a3a1a1/", short: "IN" },
-    { label: "Email", href: "mailto:wand.simon1@gmail.com", short: "@" },
+    { label: "Email", href: "mailto:hello@simonwand.de", short: "@" },
   ] as SocialLink[],
   projects: [
     {
@@ -177,7 +177,7 @@ const shared = {
     },
   ],
   contactDetails: [
-    { value: "wand.simon1@gmail.com", href: "mailto:wand.simon1@gmail.com" },
+    { value: "hello@simonwand.de", href: "mailto:hello@simonwand.de" },
     { value: "+49 152 53451660", href: "tel:+4915253451660" },
     { value: "Braunschweig, Germany" },
   ],
